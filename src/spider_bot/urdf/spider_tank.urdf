@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<robot name="spider_tank">
+
+  <material name="white"><color rgba="0.9 0.9 0.9 1"/></material>
+  <material name="black"><color rgba="0.1 0.1 0.1 1"/></material>
+
+  <link name="base_link">
+    <visual><geometry><box size="0.25 0.2 0.06"/></geometry><material name="white"/></visual>
+    <!-- 碰撞體寬度縮減至 0.18，避免與側邊腿部 joint1/16/7/10 發生碰撞衝突 -->
+    <collision><geometry><box size="0.24 0.18 0.05"/></geometry></collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.02" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.04"/>
+    </inertial>
+  </link>
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+  <!-- ==================== MACRO-LIKE DEFINITIONS (Legs 1-6) ==================== -->
+  
+  <!-- LEG 1 (Right Front) -->
+  <joint name="joint1" type="fixed">
+    <parent link="base_link"/><child link="l1_c"/><origin xyz="0.12 0.1 0" rpy="0 0 0.0"/><axis xyz="0 0 1"/>
+    <limit effort="100.0" lower="-0.78" upper="0.78" velocity="1.0"/><dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  
+  <link name="l1_c">
+    <visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.05 0.05"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.03 0 0"/><geometry><box size="0.04 0.03 0.03"/></geometry></collision>
+    <inertial><mass value="0.5"/><inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint2" type="fixed">
+    <parent link="l1_c"/><child link="l1_f"/><origin xyz="0.06 0 0" rpy="0 1.25 0"/><axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0"/><dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="l1_f">
+    <visual><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.04 0.04"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.05 0 0"/><geometry><box size="0.08 0.03 0.03"/></geometry></collision>
+    <inertial><mass value="0.8"/><inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/></inertial>
+  </link>
+
+  <!-- Tibia 主體關節 -->
+  <joint name="joint3" type="fixed">
+    <parent link="l1_f"/><child link="l1_t"/><origin xyz="0.1 0 0" rpy="0 1.9 0"/><axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+
+  <!-- Tibia 支架 -->
+  <link name="l1_t">
+    <visual><origin xyz="0.05 0 0"/><geometry><box size="0.2 0.05 0.04"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.02 0.03"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+
+  <!-- 前端圓柱 (Front Roller) -->
+  <joint name="l1_tibia_front_joint" type="continuous">
+    <parent link="l1_t"/><child link="l1_tibia_front_cyl"/>
+    <origin xyz="0.15 0 0" rpy="1.57 0 0"/> <!-- 移至前端並轉 90 度 -->
+    <axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link name="l1_tibia_front_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+
+  <!-- 後端圓柱 (Back Roller) -->
+  <joint name="l1_tibia_back_joint" type="continuous">
+    <parent link="l1_t"/><child link="l1_tibia_back_cyl"/>
+    <origin xyz="-0.05 0 0" rpy="1.57 0 0"/> <!-- 留在關節處並轉 90 度 -->
+    <axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link name="l1_tibia_back_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+
+  <!-- LEG 2 (Right Mid) -->
+  <joint name="joint4" type="fixed"><parent link="base_link"/><child link="l2_c"/><origin xyz="0 0.12 0" rpy="-1.57 -1.57 1.57"/><axis xyz="0 0 1"/><limit effort="50.0" lower="-0.78" upper="0.78" velocity="1.0"/></joint>
+  <link name="l2_c"><visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.05 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.03 0 0"/><geometry><box size="0.05 0.04 0.04"/></geometry></collision><inertial><mass value="0.5"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial></link>
+  <joint name="joint5" type="fixed"><parent link="l2_c"/><child link="l2_f"/><origin xyz="0.06 0 0" rpy="0 0.8 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l2_f"><visual><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.04 0.04"/></geometry><material name="white"/></visual><collision><origin xyz="0.05 0 0"/><geometry><box size="0.09 0.03 0.03"/></geometry></collision><inertial><mass value="0.8"/><inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/></inertial></link>
+  <joint name="joint6" type="fixed"><parent link="l2_f"/><child link="l2_t"/><origin xyz="0.1 0 0" rpy="0 0.8 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l2_t"><visual><origin xyz="0.1 0 -0.02"/><geometry><box size="0.18 0.06 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.1 0 -0.02"/><geometry><box size="0.17 0.05 0.04"/></geometry></collision><inertial><mass value="2.0"/><inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/></inertial></link>
+
+  <!-- LEG 3 (Right Back) -->
+  <joint name="joint7" type="fixed"><parent link="base_link"/><child link="l3_c"/><origin xyz="-0.12 0.1 0" rpy="0 0 3.14"/><axis xyz="0 0 1"/><limit effort="50.0" lower="-0.78" upper="0.78" velocity="1.0"/></joint>
+  <link name="l3_c"><visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.05 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.03 0 0"/><geometry><box size="0.05 0.04 0.04"/></geometry></collision><inertial><mass value="0.5"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial></link>
+  <joint name="joint8" type="fixed"><parent link="l3_c"/><child link="l3_f"/><origin xyz="0.06 0 0" rpy="0 1.25 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l3_f"><visual><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.04 0.04"/></geometry><material name="white"/></visual><collision><origin xyz="0.05 0 0"/><geometry><box size="0.09 0.03 0.03"/></geometry></collision><inertial><mass value="0.8"/><inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/></inertial></link>
+  <joint name="joint9" type="fixed">
+    <parent link="l3_f"/><child link="l3_t"/><origin xyz="0.1 0 0" rpy="0 1.9 0"/><axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+  <link name="l3_t">
+    <visual><origin xyz="0.05 0 0"/><geometry><box size="0.2 0.05 0.04"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.02 0.03"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+  <joint name="l3_tibia_front_joint" type="continuous"><parent link="l3_t"/><child link="l3_tibia_front_cyl"/><origin xyz="0.15 0 0" rpy="1.57 0 0"/><axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/></joint>
+  <link name="l3_tibia_front_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+  <joint name="l3_tibia_back_joint" type="continuous"><parent link="l3_t"/><child link="l3_tibia_back_cyl"/><origin xyz="-0.05 0 0" rpy="1.57 0 0"/><axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/></joint>
+  <link name="l3_tibia_back_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+
+  <!-- LEG 4 (Left Back) -->
+  <joint name="joint10" type="fixed"><parent link="base_link"/><child link="l4_c"/><origin xyz="-0.12 -0.1 0" rpy="0 0 -3.14"/><axis xyz="0 0 1"/><limit effort="50.0" lower="-0.78" upper="0.78" velocity="1.0"/></joint>
+  <link name="l4_c"><visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.05 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.03 0 0"/><geometry><box size="0.05 0.04 0.04"/></geometry></collision><inertial><mass value="0.5"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial></link>
+  <joint name="joint11" type="fixed"><parent link="l4_c"/><child link="l4_f"/><origin xyz="0.06 0 0" rpy="0 1.25 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l4_f"><visual><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.04 0.04"/></geometry><material name="white"/></visual><collision><origin xyz="0.05 0 0"/><geometry><box size="0.09 0.03 0.03"/></geometry></collision><inertial><mass value="0.8"/><inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/></inertial></link>
+  <joint name="joint12" type="fixed">
+    <parent link="l4_f"/><child link="l4_t"/><origin xyz="0.1 0 0" rpy="0 1.9 0"/><axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+  <link name="l4_t">
+    <visual><origin xyz="0.05 0 0"/><geometry><box size="0.2 0.05 0.04"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.02 0.03"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+  <joint name="l4_tibia_front_joint" type="continuous"><parent link="l4_t"/><child link="l4_tibia_front_cyl"/><origin xyz="0.15 0 0" rpy="1.57 0 0"/><axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/></joint>
+  <link name="l4_tibia_front_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+  <joint name="l4_tibia_back_joint" type="continuous"><parent link="l4_t"/><child link="l4_tibia_back_cyl"/><origin xyz="-0.05 0 0" rpy="1.57 0 0"/><axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/></joint>
+  <link name="l4_tibia_back_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+
+  <!-- LEG 5 (Left Mid) -->
+  <joint name="joint13" type="fixed"><parent link="base_link"/><child link="l5_c"/><origin xyz="0 -0.12 0" rpy="1.57 -1.57 -1.57"/><axis xyz="0 0 1"/><limit effort="50.0" lower="-0.78" upper="0.78" velocity="1.0"/></joint>
+  <link name="l5_c"><visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.05 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.03 0 0"/><geometry><box size="0.05 0.04 0.04"/></geometry></collision><inertial><mass value="0.5"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial></link>
+  <joint name="joint14" type="fixed"><parent link="l5_c"/><child link="l5_f"/><origin xyz="0.06 0 0" rpy="0 0.8 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l5_f"><visual><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.04 0.04"/></geometry><material name="white"/></visual><collision><origin xyz="0.05 0 0"/><geometry><box size="0.09 0.03 0.03"/></geometry></collision><inertial><mass value="0.8"/><inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/></inertial></link>
+  <joint name="joint15" type="fixed"><parent link="l5_f"/><child link="l5_t"/><origin xyz="0.1 0 0" rpy="0 0.8 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l5_t"><visual><origin xyz="0.1 0 -0.02"/><geometry><box size="0.18 0.06 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.1 0 -0.02"/><geometry><box size="0.17 0.05 0.04"/></geometry></collision><inertial><mass value="2.0"/><inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/></inertial></link>
+
+  <!-- LEG 6 (Left Front) -->
+  <joint name="joint16" type="fixed"><parent link="base_link"/><child link="l6_c"/><origin xyz="0.12 -0.1 0" rpy="0 0 0.0"/><axis xyz="0 0 1"/><limit effort="50.0" lower="-0.78" upper="0.78" velocity="1.0"/></joint>
+  <link name="l6_c"><visual><origin xyz="0.03 0 0"/><geometry><box size="0.06 0.05 0.05"/></geometry><material name="white"/></visual><collision><origin xyz="0.03 0 0"/><geometry><box size="0.05 0.04 0.04"/></geometry></collision><inertial><mass value="0.5"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial></link>
+  <joint name="joint17" type="fixed"><parent link="l6_c"/><child link="l6_f"/><origin xyz="0.06 0 0" rpy="0 1.25 0"/><axis xyz="0 -1 0"/><limit effort="50.0" lower="-1.57" upper="1.57" velocity="1.0"/></joint>
+  <link name="l6_f"><visual><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.04 0.04"/></geometry><material name="white"/></visual><collision><origin xyz="0.05 0 0"/><geometry><box size="0.09 0.03 0.03"/></geometry></collision><inertial><mass value="0.8"/><inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/></inertial></link>
+  <joint name="joint18" type="fixed">
+    <parent link="l6_f"/><child link="l6_t"/><origin xyz="0.1 0 0" rpy="0 1.9 0"/><axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+  </joint>
+  <link name="l6_t">
+    <visual><origin xyz="0.05 0 0"/><geometry><box size="0.2 0.05 0.04"/></geometry><material name="white"/></visual>
+    <collision><origin xyz="0.05 0 0"/><geometry><box size="0.1 0.02 0.03"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+  <joint name="l6_tibia_front_joint" type="continuous"><parent link="l6_t"/><child link="l6_tibia_front_cyl"/><origin xyz="0.15 0 0" rpy="1.57 0 0"/><axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/></joint>
+  <link name="l6_tibia_front_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+  <joint name="l6_tibia_back_joint" type="continuous"><parent link="l6_t"/><child link="l6_tibia_back_cyl"/><origin xyz="-0.05 0 0" rpy="1.57 0 0"/><axis xyz="0 0 1"/><dynamics damping="0.0" friction="0.0"/></joint>
+  <link name="l6_tibia_back_cyl">
+    <visual><geometry><cylinder radius="0.02" length="0.05"/></geometry><material name="black"/></visual>
+    <collision><geometry><cylinder radius="0.02" length="0.05"/></geometry></collision>
+    <inertial><mass value="0.3"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+  </link>
+
+  <!-- ==================== GAZEBO ROS2 CONTROL ==================== -->
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware><plugin>gazebo_ros2_control/GazeboSystem</plugin></hardware>
+    <joint name="l1_tibia_back_joint"><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
+    <joint name="l3_tibia_back_joint"><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
+    <joint name="l4_tibia_back_joint"><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
+    <joint name="l6_tibia_back_joint"><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
+  </ros2_control>
+
+  <gazebo>
+      <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+        <parameters>$(find spider_bot)/config/spider_bot_controllers.yaml</parameters>
+      </plugin>
+      <plugin name="gazebo_ros_p3d" filename="libgazebo_ros_p3d.so">
+        <ros>
+          <namespace>/</namespace>
+          <remapping>odom:=odom</remapping>
+        </ros>
+        <body_name>base_link</body_name>
+        <frame_name>world</frame_name>
+        <update_rate>50</update_rate>
+      </plugin>
+    </gazebo>
+
+  <!-- Physics & Self-Collision Global Settings -->
+  <gazebo reference="l1_c"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l1_f"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l1_tibia_front_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l1_tibia_back_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l2_c"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l2_f"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l3_c"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l3_f"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l3_tibia_front_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l3_tibia_back_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l4_c"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l4_f"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l4_tibia_front_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l4_tibia_back_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l5_c"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l5_f"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l6_c"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l6_f"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l6_tibia_front_cyl"><self_collide>true</self_collide></gazebo>
+  <gazebo reference="l6_tibia_back_cyl"><self_collide>true</self_collide></gazebo>
+
+  <!-- Wheel/Support Physics -->
+  <!-- kp=10000.0 (Stiffness), kd=1.0 (Damping) -->
+  <gazebo reference="l1_tibia_back_cyl"><mu1>10</mu1><mu2>10</mu2><kp>10000.0</kp><kd>1.0</kd><material>Gazebo/black</material></gazebo>
+  <gazebo reference="l3_tibia_back_cyl"><mu1>10</mu1><mu2>10</mu2><kp>10000.0</kp><kd>1.0</kd><material>Gazebo/black</material></gazebo>
+  <gazebo reference="l4_tibia_back_cyl"><mu1>10</mu1><mu2>10</mu2><kp>10000.0</kp><kd>1.0</kd><material>Gazebo/black</material></gazebo>
+  <gazebo reference="l6_tibia_back_cyl"><mu1>10</mu1><mu2>10</mu2><kp>10000.0</kp><kd>1.0</kd><material>Gazebo/black</material></gazebo>
+  <gazebo reference="l1_tibia_front_cyl"><mu1>0.0</mu1><mu2>0.0</mu2><kp>10000.0</kp><kd>1.0</kd></gazebo>
+  <gazebo reference="l3_tibia_front_cyl"><mu1>0.0</mu1><mu2>0.0</mu2><kp>10000.0</kp><kd>1.0</kd></gazebo>
+  <gazebo reference="l4_tibia_front_cyl"><mu1>0.0</mu1><mu2>0.0</mu2><kp>10000.0</kp><kd>1.0</kd></gazebo>
+  <gazebo reference="l6_tibia_front_cyl"><mu1>0.0</mu1><mu2>0.0</mu2><kp>10000.0</kp><kd>1.0</kd></gazebo>
+
+</robot>
+

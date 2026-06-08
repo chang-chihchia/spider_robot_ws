@@ -1,0 +1,53 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    spider_leg_controller:
+      type: position_controllers/JointGroupPositionController # <-- 改成位置控制
+
+spider_leg_controller:
+  ros__parameters:
+    joints:
+      - joint_rf_coxa
+      - joint_rf_femur
+      - joint_rf_foot
+      - joint_lf_coxa
+      - joint_lf_femur
+      - joint_lf_foot
+      - joint_rm_coxa
+      - joint_rm_femur
+      - joint_rm_foot
+      - joint_lm_coxa
+      - joint_lm_femur
+      - joint_lm_foot
+      - joint_rb_coxa
+      - joint_rb_femur
+      - joint_rb_foot
+      - joint_lb_coxa
+      - joint_lb_femur
+      - joint_lb_foot
+    interface_name: position
+
+    # 👇 請務必加上這段 gains 設定，來限制 Gazebo 裡的馬達出力剛度
+    gains:
+      joint_rf_coxa: {p: 10.0, i: 0.01, d: 0.1}
+      joint_rf_femur: {p: 20.0, i: 0.01, d: 0.5}
+      joint_rf_foot: {p: 20.0, i: 0.01, d: 0.5}
+      joint_lf_coxa: {p: 10.0, i: 0.01, d: 0.1}
+      joint_lf_femur: {p: 20.0, i: 0.01, d: 0.5}
+      joint_lf_foot: {p: 20.0, i: 0.01, d: 0.5}
+      joint_rm_coxa: {p: 10.0, i: 0.01, d: 0.1}
+      joint_rm_femur: {p: 20.0, i: 0.01, d: 0.5}
+      joint_rm_foot: {p: 20.0, i: 0.01, d: 0.5}
+      joint_lm_coxa: {p: 10.0, i: 0.01, d: 0.1}
+      joint_lm_femur: {p: 20.0, i: 0.01, d: 0.5}
+      joint_lm_foot: {p: 20.0, i: 0.01, d: 0.5}
+      joint_rb_coxa: {p: 10.0, i: 0.01, d: 0.1}
+      joint_rb_femur: {p: 20.0, i: 0.01, d: 0.5}
+      joint_rb_foot: {p: 20.0, i: 0.01, d: 0.5}
+      joint_lb_coxa: {p: 10.0, i: 0.01, d: 0.1}
+      joint_lb_femur: {p: 20.0, i: 0.01, d: 0.5}
+      joint_lb_foot: {p: 20.0, i: 0.01, d: 0.5}

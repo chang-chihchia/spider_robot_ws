@@ -1,0 +1,1 @@
+/home/chia/spider_ws/build/spider_bot/launch/gazebo_new_launch.py

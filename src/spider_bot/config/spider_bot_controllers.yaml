@@ -1,0 +1,44 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # 注意：這裡原本少了冒號
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster # 必須有斜線
+
+    spider_leg_controller:
+      type: effort_controllers/JointGroupEffortController # 必須有斜線
+    
+    # 4 顆直流馬達 (驅動履帶)
+    dc_motor_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+spider_leg_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+      - joint7
+      - joint8
+      - joint9
+      - joint10
+      - joint11
+      - joint12
+      - joint13
+      - joint14
+      - joint15
+      - joint16
+      - joint17
+      - joint18
+
+dc_motor_controller:
+  ros__parameters:
+    joints:
+      - l1_tibia_back_joint
+      - l3_tibia_back_joint
+      - l4_tibia_back_joint
+      - l6_tibia_back_joint
+

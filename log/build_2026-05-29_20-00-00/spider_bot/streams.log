@@ -1,0 +1,44 @@
+[0.568s] Invoking command in '/home/chia/spider_ws/build/spider_bot': PYTHONPATH=/home/chia/spider_ws/build/spider_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/chia/spider_ws/build/spider_bot/build --no-deps symlink_data
+[0.755s] running develop
+[0.854s] running egg_info
+[0.854s] creating spider_bot.egg-info
+[0.854s] writing spider_bot.egg-info/PKG-INFO
+[0.855s] writing dependency_links to spider_bot.egg-info/dependency_links.txt
+[0.855s] writing entry points to spider_bot.egg-info/entry_points.txt
+[0.855s] writing requirements to spider_bot.egg-info/requires.txt
+[0.855s] writing top-level names to spider_bot.egg-info/top_level.txt
+[0.855s] writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.856s] reading manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.857s] writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.858s] running build_ext
+[0.859s] Creating /home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages/spider-bot.egg-link (link to .)
+[0.859s] Installing imu_reader script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.860s] Installing plot_thesis script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.860s] Installing run script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.860s] Installing spider_bot_control script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.860s] Installing standup script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.860s] Installing tank script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.861s] Installing test_node script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.861s] 
+[0.861s] Installed /home/chia/spider_ws/build/spider_bot
+[0.861s] running symlink_data
+[0.861s] creating /home/chia/spider_ws/install/spider_bot/share/ament_index
+[0.861s] creating /home/chia/spider_ws/install/spider_bot/share/ament_index/resource_index
+[0.861s] creating /home/chia/spider_ws/install/spider_bot/share/ament_index/resource_index/packages
+[0.861s] symbolically linking /home/chia/spider_ws/build/spider_bot/resource/spider_bot -> /home/chia/spider_ws/install/spider_bot/share/ament_index/resource_index/packages
+[0.861s] symbolically linking /home/chia/spider_ws/build/spider_bot/package.xml -> /home/chia/spider_ws/install/spider_bot/share/spider_bot
+[0.861s] symbolically linking /home/chia/spider_ws/build/spider_bot/models/model_1499.pt -> /home/chia/spider_ws/install/spider_bot/share/spider_bot
+[0.862s] creating /home/chia/spider_ws/install/spider_bot/share/spider_bot/worlds
+[0.862s] symbolically linking /home/chia/spider_ws/build/spider_bot/worlds/rough_terrain.world -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/worlds
+[0.862s] creating /home/chia/spider_ws/install/spider_bot/share/spider_bot/launch
+[0.862s] symbolically linking /home/chia/spider_ws/build/spider_bot/launch/spider_bot_control.launch.py -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/launch
+[0.863s] symbolically linking /home/chia/spider_ws/build/spider_bot/launch/gazebo_launch.py -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/launch
+[0.863s] symbolically linking /home/chia/spider_ws/build/spider_bot/launch/gazebo_new_launch.py -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/launch
+[0.863s] creating /home/chia/spider_ws/install/spider_bot/share/spider_bot/config
+[0.864s] symbolically linking /home/chia/spider_ws/build/spider_bot/config/spider_bot_controllers.yaml -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/config
+[0.864s] symbolically linking /home/chia/spider_ws/build/spider_bot/config/spider_bot_new_controllers.yaml -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/config
+[0.864s] creating /home/chia/spider_ws/install/spider_bot/share/spider_bot/urdf
+[0.865s] symbolically linking /home/chia/spider_ws/build/spider_bot/urdf/spider_bot.urdf -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/urdf
+[0.865s] symbolically linking /home/chia/spider_ws/build/spider_bot/urdf/spider.urdf -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/urdf
+[0.865s] symbolically linking /home/chia/spider_ws/build/spider_bot/urdf/spider_tank.urdf -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/urdf
+[0.889s] Invoked command in '/home/chia/spider_ws/build/spider_bot' returned '0': PYTHONPATH=/home/chia/spider_ws/build/spider_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/chia/spider_ws/build/spider_bot/build --no-deps symlink_data

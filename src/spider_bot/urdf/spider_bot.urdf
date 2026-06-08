@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+<robot name="hexapod_track_robot">
+
+  <material name="blue"><color rgba="0 0 1 1"/></material>
+  <material name="red"><color rgba="1 0 0 1"/></material>
+  <material name="green"><color rgba="0 1 0 1"/></material>
+  <material name="yellow"><color rgba="1 1 0 1"/></material>
+  <material name="grey"><color rgba="0.3 0.3 0.3 1"/></material>
+
+  <link name="base_link">
+    <visual>
+      <geometry><box size="0.242 0.140 0.047"/></geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry><box size="0.235 0.135 0.045"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="2.5"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.02"/>
+    </inertial>
+  </link>
+
+  <joint name="joint_rf_coxa" type="revolute">
+    <parent link="base_link"/><child link="link_rf_coxa"/>
+    <origin xyz="0.121 -0.070 0" rpy="0 0 -0.785"/>
+    <axis xyz="0 0 1"/><limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_rf_coxa">
+    <visual><origin xyz="0.03425 0 0"/><geometry><box size="0.0685 0.04 0.04"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.03425 0 0"/><geometry><box size="0.055 0.035 0.035"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint_rf_femur" type="revolute">
+    <parent link="link_rf_coxa"/><child link="link_rf_femur"/>
+    <origin xyz="0.0685 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="15" velocity="3"/>
+  </joint>
+  <link name="link_rf_femur">
+    <visual><origin xyz="0.055 0 0"/><geometry><box size="0.11 0.03 0.03"/></geometry><material name="red"/></visual>
+    <collision><origin xyz="0.055 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint_rf_foot" type="revolute">
+    <parent link="link_rf_femur"/><child link="link_rf_t_foot"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_rf_t_foot">
+    <visual><origin xyz="0.04 0 0"/><geometry><box size="0.08 0.04 0.025"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0.08 0 -0.1"/><geometry><box size="0.025 0.04 0.28"/></geometry><material name="red"/></visual>
+    <visual><origin xyz="0.08 0 -0.24" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="green"/></visual>
+    <visual><origin xyz="0.08 0 0.04" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="yellow"/></visual>
+    
+    <collision>
+      <origin xyz="0.08 0 -0.24" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    
+    <inertial><origin xyz="0.04 0 -0.04"/><mass value="0.3"/><inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/></inertial>
+  </link>
+
+  <joint name="joint_lf_coxa" type="revolute">
+    <parent link="base_link"/><child link="link_lf_coxa"/>
+    <origin xyz="0.121 0.070 0" rpy="0 0 0.785"/>
+    <axis xyz="0 0 1"/><limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_lf_coxa">
+    <visual><origin xyz="0.03425 0 0"/><geometry><box size="0.0685 0.04 0.04"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.03425 0 0"/><geometry><box size="0.055 0.035 0.035"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+  <joint name="joint_lf_femur" type="revolute">
+    <parent link="link_lf_coxa"/><child link="link_lf_femur"/>
+    <origin xyz="0.0685 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="15" velocity="3"/>
+  </joint>
+  <link name="link_lf_femur">
+    <visual><origin xyz="0.055 0 0"/><geometry><box size="0.11 0.03 0.03"/></geometry><material name="red"/></visual>
+    <collision><origin xyz="0.055 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+  <joint name="joint_lf_foot" type="revolute">
+    <parent link="link_lf_femur"/><child link="link_lf_t_foot"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_lf_t_foot">
+    <visual><origin xyz="0.04 0 0"/><geometry><box size="0.08 0.04 0.025"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0.08 0 -0.1"/><geometry><box size="0.025 0.04 0.28"/></geometry><material name="red"/></visual>
+    <visual><origin xyz="0.08 0 -0.24" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="green"/></visual>
+    <visual><origin xyz="0.08 0 0.04" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="yellow"/></visual>
+    
+    <collision>
+      <origin xyz="0.08 0 -0.24" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    
+    <inertial><origin xyz="0.04 0 -0.04"/><mass value="0.3"/><inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/></inertial>
+  </link>
+
+  <joint name="joint_rm_coxa" type="revolute">
+    <parent link="base_link"/><child link="link_rm_coxa"/>
+    <origin xyz="0 -0.070 0" rpy="0 0 -1.57"/>
+    <axis xyz="0 0 1"/><limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_rm_coxa">
+    <visual><origin xyz="0.03425 0 0"/><geometry><box size="0.0685 0.04 0.04"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.03425 0 0"/><geometry><box size="0.055 0.035 0.035"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint_rm_femur" type="revolute">
+    <parent link="link_rm_coxa"/><child link="link_rm_femur"/>
+    <origin xyz="0.0685 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="15" velocity="3"/>
+  </joint>
+  <link name="link_rm_femur">
+    <visual><origin xyz="0.055 0 0"/><geometry><box size="0.11 0.03 0.03"/></geometry><material name="red"/></visual>
+    <collision><origin xyz="0.055 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint_rm_foot" type="revolute">
+    <parent link="link_rm_femur"/><child link="link_rm_t_foot"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_rm_t_foot">
+    <visual><origin xyz="0.04 0 0"/><geometry><box size="0.08 0.04 0.025"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0.08 0 -0.1"/><geometry><box size="0.025 0.04 0.28"/></geometry><material name="red"/></visual>
+    <visual><origin xyz="0.08 0 -0.24" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="green"/></visual>
+    <visual><origin xyz="0.08 0 0.04" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="yellow"/></visual>
+    
+    <collision>
+      <origin xyz="0.08 0 -0.24" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    
+    <inertial><origin xyz="0.04 0 -0.04"/><mass value="0.3"/><inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/></inertial>
+  </link>
+
+  <joint name="joint_lm_coxa" type="revolute">
+    <parent link="base_link"/><child link="link_lm_coxa"/>
+    <origin xyz="0 0.070 0" rpy="0 0 1.57"/>
+    <axis xyz="0 0 1"/><limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_lm_coxa">
+    <visual><origin xyz="0.03425 0 0"/><geometry><box size="0.0685 0.04 0.04"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.03425 0 0"/><geometry><box size="0.055 0.035 0.035"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+  <joint name="joint_lm_femur" type="revolute">
+    <parent link="link_lm_coxa"/><child link="link_lm_femur"/>
+    <origin xyz="0.0685 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="15" velocity="3"/>
+  </joint>
+  <link name="link_lm_femur">
+    <visual><origin xyz="0.055 0 0"/><geometry><box size="0.11 0.03 0.03"/></geometry><material name="red"/></visual>
+    <collision><origin xyz="0.055 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+  <joint name="joint_lm_foot" type="revolute">
+    <parent link="link_lm_femur"/><child link="link_lm_t_foot"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_lm_t_foot">
+    <visual><origin xyz="0.04 0 0"/><geometry><box size="0.08 0.04 0.025"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0.08 0 -0.1"/><geometry><box size="0.025 0.04 0.28"/></geometry><material name="red"/></visual>
+    <visual><origin xyz="0.08 0 -0.24" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="green"/></visual>
+    <visual><origin xyz="0.08 0 0.04" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="yellow"/></visual>
+    
+    <collision>
+      <origin xyz="0.08 0 -0.24" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    
+    <inertial><origin xyz="0.04 0 -0.04"/><mass value="0.3"/><inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/></inertial>
+  </link>
+
+  <joint name="joint_rb_coxa" type="revolute">
+    <parent link="base_link"/><child link="link_rb_coxa"/>
+    <origin xyz="-0.121 -0.070 0" rpy="0 0 -2.356"/>
+    <axis xyz="0 0 1"/><limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_rb_coxa">
+    <visual><origin xyz="0.03425 0 0"/><geometry><box size="0.0685 0.04 0.04"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.03425 0 0"/><geometry><box size="0.055 0.035 0.035"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint_rb_femur" type="revolute">
+    <parent link="link_rb_coxa"/><child link="link_rb_femur"/>
+    <origin xyz="0.0685 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="15" velocity="3"/>
+  </joint>
+  <link name="link_rb_femur">
+    <visual><origin xyz="0.055 0 0"/><geometry><box size="0.11 0.03 0.03"/></geometry><material name="red"/></visual>
+    <collision><origin xyz="0.055 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+
+  <joint name="joint_rb_foot" type="revolute">
+    <parent link="link_rb_femur"/><child link="link_rb_t_foot"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_rb_t_foot">
+    <visual><origin xyz="0.04 0 0"/><geometry><box size="0.08 0.04 0.025"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0.08 0 -0.1"/><geometry><box size="0.025 0.04 0.28"/></geometry><material name="red"/></visual>
+    <visual><origin xyz="0.08 0 -0.24" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="green"/></visual>
+    <visual><origin xyz="0.08 0 0.04" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="yellow"/></visual>
+    
+    <collision>
+      <origin xyz="0.08 0 -0.24" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    
+    <inertial><origin xyz="0.04 0 -0.04"/><mass value="0.3"/><inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/></inertial>
+  </link>
+
+  <joint name="joint_lb_coxa" type="revolute">
+    <parent link="base_link"/><child link="link_lb_coxa"/>
+    <origin xyz="-0.121 0.070 0" rpy="0 0 2.356"/>
+    <axis xyz="0 0 1"/><limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_lb_coxa">
+    <visual><origin xyz="0.03425 0 0"/><geometry><box size="0.0685 0.04 0.04"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.03425 0 0"/><geometry><box size="0.055 0.035 0.035"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+  <joint name="joint_lb_femur" type="revolute">
+    <parent link="link_lb_coxa"/><child link="link_lb_femur"/>
+    <origin xyz="0.0685 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="15" velocity="3"/>
+  </joint>
+  <link name="link_lb_femur">
+    <visual><origin xyz="0.055 0 0"/><geometry><box size="0.11 0.03 0.03"/></geometry><material name="red"/></visual>
+    <collision><origin xyz="0.055 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/></inertial>
+  </link>
+  <joint name="joint_lb_foot" type="revolute">
+    <parent link="link_lb_femur"/><child link="link_lb_t_foot"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="3"/>
+  </joint>
+  <link name="link_lb_t_foot">
+    <visual><origin xyz="0.04 0 0"/><geometry><box size="0.08 0.04 0.025"/></geometry><material name="blue"/></visual>
+    <visual><origin xyz="0.08 0 -0.1"/><geometry><box size="0.025 0.04 0.28"/></geometry><material name="red"/></visual>
+    <visual><origin xyz="0.08 0 -0.24" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="green"/></visual>
+    <visual><origin xyz="0.08 0 0.04" rpy="1.57 0 0"/><geometry><cylinder radius="0.0125" length="0.04"/></geometry><material name="yellow"/></visual>
+    
+    <collision>
+      <origin xyz="0.08 0 -0.24" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    
+    <inertial><origin xyz="0.04 0 -0.04"/><mass value="0.3"/><inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/></inertial>
+  </link>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Grey</material>
+    <mu1>1.0</mu1><mu2>1.0</mu2>
+  </gazebo>
+  
+  <gazebo reference="link_rf_coxa"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="link_rf_femur"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="link_rf_t_foot">
+    <material>Gazebo/Yellow</material>
+    <mu1>8.0</mu1><mu2>8.0</mu2>   ← 從 2.0 改成 8.0
+    <kp>100000.0</kp>               ← 提高 kp
+    <kd>500.0</kd>
+    <maxVel>0.01</maxVel>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+  
+  <gazebo reference="link_lf_coxa"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="link_lf_femur"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="link_lf_t_foot">
+    <material>Gazebo/Yellow</material>
+    <mu1>8.0</mu1><mu2>8.0</mu2>   ← 從 2.0 改成 8.0
+    <kp>100000.0</kp>               ← 提高 kp
+    <kd>500.0</kd>
+    <maxVel>0.01</maxVel>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+  
+  <gazebo reference="link_rm_coxa"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="link_rm_femur"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="link_rm_t_foot">
+    <material>Gazebo/Yellow</material>
+    <mu1>8.0</mu1><mu2>8.0</mu2>   ← 從 2.0 改成 8.0
+    <kp>100000.0</kp>               ← 提高 kp
+    <kd>500.0</kd>
+    <maxVel>0.01</maxVel>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+  
+  <gazebo reference="link_lm_coxa"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="link_lm_femur"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="link_lm_t_foot">
+    <material>Gazebo/Yellow</material>
+    <mu1>8.0</mu1><mu2>8.0</mu2>   ← 從 2.0 改成 8.0
+    <kp>100000.0</kp>               ← 提高 kp
+    <kd>500.0</kd>
+    <maxVel>0.01</maxVel>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+  
+  <gazebo reference="link_rb_coxa"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="link_rb_femur"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="link_rb_t_foot">
+    <material>Gazebo/Yellow</material>
+    <mu1>8.0</mu1><mu2>8.0</mu2>   ← 從 2.0 改成 8.0
+    <kp>100000.0</kp>               ← 提高 kp
+    <kd>500.0</kd>
+    <maxVel>0.01</maxVel>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+  
+  <gazebo reference="link_lb_coxa"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="link_lb_femur"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="link_lb_t_foot">
+    <material>Gazebo/Yellow</material>
+    <mu1>8.0</mu1><mu2>8.0</mu2>   ← 從 2.0 改成 8.0
+    <kp>100000.0</kp>               ← 提高 kp
+    <kd>500.0</kd>
+    <maxVel>0.01</maxVel>
+    <minDepth>0.002</minDepth>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <parameters>$(find spider_bot)/config/spider_bot_new_controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware><plugin>gazebo_ros2_control/GazeboSystem</plugin></hardware>
+    <joint name="joint_rf_coxa"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rf_femur"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rf_foot"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lf_coxa"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lf_femur"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lf_foot"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rm_coxa"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rm_femur"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rm_foot"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lm_coxa"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lm_femur"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lm_foot"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rb_coxa"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rb_femur"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_rb_foot"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lb_coxa"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lb_femur"><command_interface name="position"/><state_interface name="position"/></joint>
+    <joint name="joint_lb_foot"><command_interface name="position"/><state_interface name="position"/></joint>
+  </ros2_control>
+
+</robot>

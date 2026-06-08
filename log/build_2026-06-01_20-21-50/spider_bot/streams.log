@@ -1,0 +1,23 @@
+[0.586s] Invoking command in '/home/chia/spider_ws/build/spider_bot': PYTHONPATH=/home/chia/spider_ws/build/spider_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/chia/spider_ws/build/spider_bot/build --no-deps symlink_data
+[0.756s] running develop
+[0.860s] running egg_info
+[0.860s] writing spider_bot.egg-info/PKG-INFO
+[0.860s] writing dependency_links to spider_bot.egg-info/dependency_links.txt
+[0.860s] writing entry points to spider_bot.egg-info/entry_points.txt
+[0.860s] writing requirements to spider_bot.egg-info/requires.txt
+[0.860s] writing top-level names to spider_bot.egg-info/top_level.txt
+[0.864s] reading manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.866s] writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.867s] running build_ext
+[0.867s] Creating /home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages/spider-bot.egg-link (link to .)
+[0.867s] Installing imu_reader script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.868s] Installing plot_thesis script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.868s] Installing run script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.868s] Installing spider_bot_control script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.868s] Installing standup script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.868s] Installing tank script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.868s] Installing test_node script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.869s] 
+[0.869s] Installed /home/chia/spider_ws/build/spider_bot
+[0.869s] running symlink_data
+[0.895s] Invoked command in '/home/chia/spider_ws/build/spider_bot' returned '0': PYTHONPATH=/home/chia/spider_ws/build/spider_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/chia/spider_ws/build/spider_bot/build --no-deps symlink_data

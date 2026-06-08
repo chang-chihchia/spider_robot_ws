@@ -1,0 +1,25 @@
+[0.477s] Invoking command in '/home/chia/spider_ws/build/spider_bot': PYTHONPATH=/home/chia/spider_ws/build/spider_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/chia/spider_ws/build/spider_bot/build --no-deps symlink_data
+[0.651s] running develop
+[0.753s] running egg_info
+[0.754s] writing spider_bot.egg-info/PKG-INFO
+[0.754s] writing dependency_links to spider_bot.egg-info/dependency_links.txt
+[0.754s] writing entry points to spider_bot.egg-info/entry_points.txt
+[0.754s] writing requirements to spider_bot.egg-info/requires.txt
+[0.754s] writing top-level names to spider_bot.egg-info/top_level.txt
+[0.756s] reading manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.757s] writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+[0.758s] running build_ext
+[0.758s] Creating /home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages/spider-bot.egg-link (link to .)
+[0.759s] Installing imu_reader script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.759s] Installing plot_thesis script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.759s] Installing run script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.759s] Installing spider_bot_control script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.759s] Installing standup script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.759s] Installing tank script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.760s] Installing test_node script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+[0.760s] 
+[0.760s] Installed /home/chia/spider_ws/build/spider_bot
+[0.760s] running symlink_data
+[0.760s] symbolically linking /home/chia/spider_ws/build/spider_bot/worlds/safe_terrain.world -> /home/chia/spider_ws/install/spider_bot/share/spider_bot/worlds
+[0.761s] error: can't copy '/home/chia/spider_ws/build/spider_bot/config/bridge_params.yaml': doesn't exist or not a regular file
+[0.786s] Invoked command in '/home/chia/spider_ws/build/spider_bot' returned '1': PYTHONPATH=/home/chia/spider_ws/build/spider_bot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/chia/spider_ws/build/spider_bot/build --no-deps symlink_data
