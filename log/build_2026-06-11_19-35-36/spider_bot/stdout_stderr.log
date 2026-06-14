@@ -1,0 +1,22 @@
+running develop
+running egg_info
+writing spider_bot.egg-info/PKG-INFO
+writing dependency_links to spider_bot.egg-info/dependency_links.txt
+writing entry points to spider_bot.egg-info/entry_points.txt
+writing requirements to spider_bot.egg-info/requires.txt
+writing top-level names to spider_bot.egg-info/top_level.txt
+reading manifest file 'spider_bot.egg-info/SOURCES.txt'
+writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/chia/spider_ws/install/spider_bot/lib/python3.10/site-packages/spider-bot.egg-link (link to .)
+Installing imu_reader script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+Installing plot_thesis script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+Installing run script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+Installing spider_bot_control script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+Installing standup script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+Installing tank script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+Installing test_node script to /home/chia/spider_ws/install/spider_bot/lib/spider_bot
+
+Installed /home/chia/spider_ws/build/spider_bot
+error: can't copy '/home/chia/spider_ws/build/spider_bot/config/bridge_params.yaml': doesn't exist or not a regular file
+running symlink_data

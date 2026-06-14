@@ -1,0 +1,44 @@
+running develop
+running egg_info
+creating spider_bot.egg-info
+writing spider_bot.egg-info/PKG-INFO
+writing dependency_links to spider_bot.egg-info/dependency_links.txt
+writing entry points to spider_bot.egg-info/entry_points.txt
+writing requirements to spider_bot.egg-info/requires.txt
+writing top-level names to spider_bot.egg-info/top_level.txt
+writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+reading manifest file 'spider_bot.egg-info/SOURCES.txt'
+writing manifest file 'spider_bot.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/python3.10/site-packages/spider-bot.egg-link (link to .)
+Installing imu_reader script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+Installing plot_thesis script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+Installing run script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+Installing spider_bot_control script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+Installing standup script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+Installing tank script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+Installing test_node script to /home/chia/spider_ws/src/spider_bot/install/spider_bot/lib/spider_bot
+
+Installed /home/chia/spider_ws/src/spider_bot/build/spider_bot
+running symlink_data
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/ament_index
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/ament_index/resource_index
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/ament_index/resource_index/packages
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/resource/spider_bot -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/ament_index/resource_index/packages
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/package.xml -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/models/model_1499.pt -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/worlds
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/worlds/safe_terrain.world -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/worlds
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/worlds/empty_high_friction.world -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/worlds
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/worlds/rough_terrain.world -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/worlds
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/launch
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/launch/spider_bot_control.launch.py -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/launch
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/launch/gazebo_launch.py -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/launch
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/launch/gazebo_new_launch.py -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/launch
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/config
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/config/spider_bot_controllers.yaml -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/config
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/config/spider_bot_new_controllers.yaml -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/config
+creating /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/urdf
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/urdf/spider_bot.urdf -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/urdf
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/urdf/spider.urdf -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/urdf
+symbolically linking /home/chia/spider_ws/src/spider_bot/build/spider_bot/urdf/spider_tank.urdf -> /home/chia/spider_ws/src/spider_bot/install/spider_bot/share/spider_bot/urdf

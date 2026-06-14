@@ -1,35 +1,25 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
+import os
 
-def main():
-    csv_path = '/home/chia/spider_ws/end_effector_trajectory_clean.csv'
-    df = pd.read_csv(csv_path)
-    df = df[(df['time'] >= 6.0) & (df['time'] <= 12.0)]
+# 讀取數據
+file_path = os.path.expanduser('~/spider_ws/six_leg_effort_data.csv')
+df = pd.read_csv(file_path)
 
-    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-    stride_points = int(2.0 / 0.005) # 週期長度
-    colors = {'leg1': '#B22222', 'leg4': '#00008B'}
+# 設定畫布
+plt.figure(figsize=(12, 6))
 
-    for ax, y_col, z_col, title in zip(axes, ['L1_y', 'L4_y'], ['L1_z', 'L4_z'], ['leg1', 'leg4']):
-        # 關鍵：減去平均值，強迫軌跡回到 (0,0) 中心
-        y_data = df[y_col] - df[y_col].mean()
-        z_data = df[z_col]
-        
-        # 疊加繪圖
-        for i in range(0, len(df) - stride_points, stride_points):
-            y_cycle = y_data.iloc[i : i + stride_points]
-            z_cycle = z_data.iloc[i : i + stride_points]
-            ax.plot(y_cycle, z_cycle, color=colors[title], alpha=0.3, linewidth=1.2)
-        
-        ax.set_title(title, fontsize=16)
-        ax.set_aspect('equal', 'box') # 保持長寬比 1:1，D型才會出來
-        ax.grid(True, linestyle='--', alpha=0.6)
-        ax.set_xlabel('Relative y / mm')
-        ax.set_ylabel('z / mm')
+# 迴圈繪製 6 條腿的曲線
+for i in range(1, 7):
+    plt.plot(df['time'], df[f't{i}'], label=f'Leg {i} Effort', linewidth=1.2)
 
-    plt.tight_layout()
-    plt.show()
+# 學術圖表設定
+plt.title('Spider Robot Gait Analysis: Total Joint Torque Effort', fontsize=14, fontweight='bold')
+plt.xlabel('Time (s)', fontsize=12)
+plt.ylabel('Total Joint Torque (Nm)', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.legend(loc='upper right', ncol=2) # ncol=2 讓圖例更整齊
 
-if __name__ == '__main__':
-    main()
+plt.tight_layout()
+plt.savefig('six_leg_effort_analysis.png', dpi=300)
+plt.show()

@@ -1,0 +1,9 @@
+[console_scripts]
+imu_reader = spider_bot.imu_reader:main
+plot_thesis = spider_bot.plot_thesis:main
+run = spider_bot.run:main
+spider_bot_control = spider_bot.spider_bot_control:main
+standup = spider_bot.standup:main
+tank = spider_bot.tank:main
+test_node = spider_bot.test_node:main
+

@@ -1,0 +1,9 @@
+source;share/spider_bot/hook/pythonpath.ps1
+source;share/spider_bot/hook/pythonpath.dsv
+source;share/spider_bot/hook/pythonpath.sh
+source;share/spider_bot/hook/ament_prefix_path.ps1
+source;share/spider_bot/hook/ament_prefix_path.dsv
+source;share/spider_bot/hook/ament_prefix_path.sh
+source;../../build/spider_bot/share/spider_bot/hook/pythonpath_develop.ps1
+source;../../build/spider_bot/share/spider_bot/hook/pythonpath_develop.dsv
+source;../../build/spider_bot/share/spider_bot/hook/pythonpath_develop.sh

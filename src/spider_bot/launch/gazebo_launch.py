@@ -30,7 +30,7 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
-        launch_arguments={'world': os.path.join(pkg_path, 'worlds', 'safe_terrain.world')}.items(),
+
     )
 
     # 5. 在 Gazebo 裡產生機器人
@@ -81,8 +81,5 @@ def generate_launch_description():
                 on_exit=[load_dc_motor_controller],
             )
         ),
-        ExecuteProcess(
-            cmd=['python3', os.path.join(pkg_path, 'terrain_tools', 'generate_rough_ground.py')],
-            output='screen'
-        ),
+
     ])
