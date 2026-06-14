@@ -82,5 +82,9 @@ def generate_launch_description():
                 on_exit=[load_dc_motor_controller],
             )
         ),
+                ExecuteProcess(
+            cmd=['python3', os.path.join(pkg_path, 'terrain_tools', 'generate_rough_ground.py')],
+            output='screen'
+        ),
 
     ])
